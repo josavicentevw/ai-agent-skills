@@ -5,29 +5,37 @@ Esta guía te ayudará a comenzar a usar los Agent Skills en diferentes platafor
 ## 📋 Tabla de Contenidos
 
 - [Inicio Rápido](#inicio-rápido)
+- [🤖 Uso con GitHub Copilot (VS Code) - RECOMENDADO](#-uso-con-github-copilot-vs-code---recomendado)
 - [Uso en Claude API](#uso-en-claude-api)
 - [Uso en Claude Code](#uso-en-claude-code)
 - [Uso en Claude.ai](#uso-en-claudeai)
-- [Uso con GitHub Copilot](#uso-con-github-copilot)
 - [Ejemplos de Uso](#ejemplos-de-uso)
 
 ## 🚀 Inicio Rápido
 
-### Paso 1: Empaquetar Skills
-
-Primero, empaqueta los skills que quieras usar:
+### Método 1: GitHub Copilot en VS Code (RECOMENDADO)
 
 ```bash
-# Empaquetar todos los skills
-./package-skills.sh
+# 1. Copia los skills a tu proyecto
+mkdir -p .github/skills
+cp -r skills/* .github/skills/
 
-# O empaquetar un skill específico
-./package-skills.sh code-analysis
+# 2. Habilita Agent Skills en VS Code
+# Settings → chat.useAgentSkills → ✅
+
+# 3. ¡Listo! Copilot los usará automáticamente
 ```
 
-Esto creará archivos ZIP en el directorio `packaged-skills/`.
+### Método 2: Claude Code o Claude API
 
-## 🔧 Uso en Claude API
+```bash
+# Empaqueta los skills que quieras usar
+./package-skills.sh code-analysis
+
+# Esto creará archivos ZIP en packaged-skills/
+```
+
+📖 **[Ver Guía de Inicio Rápido Completa →](QUICKSTART.md)**
 
 ### Prerequisitos
 
@@ -157,7 +165,260 @@ Claude: [Activará el skill code-analysis automáticamente]
 - Acceso a red puede estar limitado según configuración
 - No hay gestión centralizada por administradores
 
-## 🤖 Uso con GitHub Copilot
+---
+
+## 🤖 Uso con GitHub Copilot (VS Code) - RECOMENDADO
+
+**Agent Skills es un estándar abierto soportado nativamente por GitHub Copilot en VS Code.** Este es el método recomendado para usar los skills en tu flujo de trabajo diario.
+
+### ¿Por qué usar GitHub Copilot con Agent Skills?
+
+✅ **Integración nativa**: No requiere API keys externas
+✅ **Activación automática**: Los skills se cargan cuando son relevantes
+✅ **Estándar abierto**: Compatible con múltiples agentes AI (Copilot, Claude, etc.)
+✅ **Portable**: Los skills funcionan en VS Code, Copilot CLI, y Copilot coding agent
+✅ **Eficiente**: Progressive disclosure - solo carga lo necesario
+✅ **Compartible**: Skills de proyecto (`.github/skills/`) se comparten con el equipo
+
+### Prerequisitos
+
+- VS Code con GitHub Copilot extension instalada
+- VS Code versión 1.108 o superior
+- GitHub Copilot activo en tu cuenta
+
+### Instalación
+
+#### Opción A: Skills de Proyecto (Recomendado)
+
+Los skills se comparten con todo el equipo vía git:
+
+```bash
+# En la raíz de tu repositorio
+mkdir -p .github/skills
+
+# Copia los skills que necesites
+cp -r skills/code-analysis .github/skills/
+cp -r skills/testing .github/skills/
+cp -r skills/product-owner .github/skills/
+
+# Commit al repositorio
+git add .github/skills
+git commit -m "feat: Add Agent Skills for team"
+git push
+```
+
+#### Opción B: Skills Personales
+
+Skills solo para ti, disponibles en todos tus proyectos:
+
+```bash
+# Crea directorio en tu home
+mkdir -p ~/.github/skills
+
+# Copia los skills
+cp -r skills/* ~/.github/skills/
+```
+
+### Configuración en VS Code
+
+1. **Habilitar Agent Skills** (Feature Preview):
+   ```
+   Settings (Cmd/Ctrl + ,) → Buscar "chat.useAgentSkills" → ✅ Activar
+   ```
+
+2. **Verificar que los skills están disponibles**:
+   - Abre GitHub Copilot Chat (`Ctrl+Cmd+I` / `Ctrl+Alt+I`)
+   - Los skills se activarán automáticamente cuando sean relevantes
+
+### Estructura de Directorios
+
+```
+tu-proyecto/
+├── .github/
+│   └── skills/              # ✅ Recomendado (compartido con equipo)
+│       ├── code-analysis/
+│       │   ├── SKILL.md
+│       │   ├── EXAMPLES_STACK.md
+│       │   └── scripts/
+│       ├── testing/
+│       │   ├── SKILL.md
+│       │   └── EXAMPLES_STACK.md
+│       ├── product-owner/
+│       │   └── SKILL.md
+│       └── engineering-manager/
+│           └── SKILL.md
+│
+# O en tu home (solo para ti):
+~/.github/skills/            # ✅ Personal (todos tus proyectos)
+    ├── code-analysis/
+    ├── testing/
+    └── ...
+```
+
+**Nota**: También se soporta `.claude/skills/` para compatibilidad legacy, pero se recomienda `.github/skills/`.
+
+### Uso Diario
+
+Los skills se activan **automáticamente** basándose en tu prompt. No necesitas seleccionarlos manualmente.
+
+#### Ejemplos de Uso
+
+**1. Análisis de Código (activa skill `code-analysis`)**
+
+```
+💬 Copilot Chat:
+"Analiza el componente UserProfile.tsx y dame recomendaciones de mejora"
+
+🔧 Copilot:
+- Detecta automáticamente el skill code-analysis
+- Carga SKILL.md y EXAMPLES_STACK.md
+- Analiza el código React/TypeScript
+- Proporciona sugerencias específicas del stack
+```
+
+**2. Crear Tests (activa skill `testing`)**
+
+```
+💬 Copilot Chat:
+"Genera tests completos para el servicio UserService usando Jest"
+
+🔧 Copilot:
+- Activa skill testing
+- Usa ejemplos de EXAMPLES_STACK.md para Jest
+- Genera unit tests, integration tests, mocks
+- Incluye casos edge y manejo de errores
+```
+
+**3. User Stories (activa skill `product-owner`)**
+
+```
+💬 Copilot Chat:
+"Escribe una user story para la feature de login social con OAuth"
+
+🔧 Copilot:
+- Activa skill product-owner
+- Usa formato de user story del SKILL.md
+- Incluye acceptance criteria
+- Agrega estimaciones y prioridad
+```
+
+**4. Performance Review (activa skill `engineering-manager`)**
+
+```
+💬 Copilot Chat:
+"Ayúdame a preparar una performance review para un senior engineer"
+
+🔧 Copilot:
+- Activa skill engineering-manager
+- Usa template de performance review
+- Estructura con goals, competencias, feedback
+```
+
+### Cómo Funciona (Progressive Disclosure)
+
+GitHub Copilot usa un sistema de carga en 3 niveles:
+
+**Nivel 1: Discovery**
+- Copilot siempre conoce qué skills están disponibles
+- Lee `name` y `description` del frontmatter YAML
+- Decide qué skill es relevante para tu prompt
+
+**Nivel 2: Instructions Loading**
+- Cuando tu prompt coincide con la descripción del skill
+- Copilot carga el contenido del `SKILL.md` completo
+- Las instrucciones detalladas están ahora disponibles
+
+**Nivel 3: Resource Access**
+- Copilot accede a archivos adicionales solo si son necesarios
+- Scripts, ejemplos, docs en el directorio del skill
+- Se cargan bajo demanda para mantener el contexto eficiente
+
+**Beneficio**: Puedes instalar muchos skills sin consumir contexto innecesariamente.
+
+### Skills por Rol
+
+#### Desarrolladores
+```bash
+cp -r skills/code-analysis .github/skills/
+cp -r skills/testing .github/skills/
+cp -r skills/refactoring .github/skills/
+cp -r skills/documentation .github/skills/
+cp -r skills/architecture .github/skills/
+```
+
+#### Product Managers
+```bash
+cp -r skills/product-owner .github/skills/
+```
+
+#### Engineering Managers
+```bash
+cp -r skills/engineering-manager .github/skills/
+cp -r skills/architecture .github/skills/
+```
+
+#### HR Team
+```bash
+cp -r skills/human-resources .github/skills/
+```
+
+#### Marketing Team
+```bash
+cp -r skills/marketing .github/skills/
+cp -r skills/communications .github/skills/
+```
+
+### Verificar Skills Instalados
+
+```bash
+# Ver skills de proyecto
+ls -1 .github/skills/
+
+# Ver skills personales
+ls -1 ~/.github/skills/
+```
+
+### Ventajas vs Claude API/Code
+
+| Característica | GitHub Copilot + Skills | Claude API/Code |
+|----------------|------------------------|------------------|
+| **Instalación** | Copy & paste | Requiere empaquetado ZIP |
+| **Activación** | Automática por prompt | Manual o programática |
+| **API Key** | No requerida (con Copilot) | Sí (Anthropic API key) |
+| **Compartir con equipo** | ✅ Vía git (.github/skills/) | ❌ Individual |
+| **Portable** | ✅ VS Code, CLI, coding agent | ✅ Claude platforms |
+| **Costo** | Incluido en Copilot | Consumo de tokens API |
+| **Integración IDE** | ✅ Nativa en VS Code | Requiere extensión |
+
+### Troubleshooting
+
+**❓ Los skills no se activan**
+
+1. Verifica que `chat.useAgentSkills` está habilitado
+2. Asegúrate de que los skills están en `.github/skills/` o `~/.github/skills/`
+3. Revisa que cada skill tiene un `SKILL.md` válido con frontmatter YAML
+4. Reinicia VS Code si acabas de agregar skills
+
+**❓ Copilot no encuentra el skill correcto**
+
+- Mejora la descripción en el frontmatter YAML del `SKILL.md`
+- Sé más específico en tu prompt (menciona keywords de la descripción)
+
+**❓ Quiero ver qué skill se activó**
+
+- Observa el contexto de la respuesta de Copilot
+- Los skills cargados deberían influenciar el formato de la respuesta
+
+### Recursos Oficiales
+
+- **VS Code Docs**: https://code.visualstudio.com/docs/copilot/customization/agent-skills
+- **Agent Skills Spec**: https://agentskills.io/
+- **GitHub Awesome Copilot**: https://github.com/github/awesome-copilot
+- **Anthropic Skills**: https://github.com/anthropics/skills
+
+---
+
+## 🔀 Flujo de Trabajo Híbrido: Copilot + Claude
 
 Los Agent Skills también pueden complementar tu flujo de trabajo con GitHub Copilot. Aunque Copilot y Claude son herramientas diferentes, puedes integrar conceptualmente los skills en tu proceso de desarrollo diario.
 

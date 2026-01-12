@@ -6,25 +6,44 @@ Una colección de Agent Skills profesionales siguiendo las mejores prácticas de
 [![Skills](https://img.shields.io/badge/Skills-10-blue.svg)]()
 [![Documentation](https://img.shields.io/badge/Docs-Completo-green.svg)]()
 
-## 🚀 Quick Start
+## 🚀 Inicio Rápido
+
+### GitHub Copilot en VS Code (Recomendado)
 
 ```bash
-# 1. Empaqueta un skill
-./package-skills.sh code-analysis
+# 1. Copia los skills a tu proyecto
+mkdir -p .github/skills
+cp -r skills/* .github/skills/
 
-# 2. Usa con Claude Code
-cp -r skills/code-analysis ~/.claude/skills/
+# 2. Habilita Agent Skills en VS Code
+# Settings → chat.useAgentSkills → ✅
 
-# 3. ¡Ya está! Claude lo usará automáticamente
+# 3. ¡Listo! Copilot los usará automáticamente
 ```
 
-📖 **[Ver Guía de Inicio Rápido Completa →](QUICKSTART.md)**
+### Claude API/Code
+
+```bash
+# 1. Empaqueta los skills que necesites
+./package-skills.sh code-analysis
+
+# 2. Importa en Claude según tu plataforma
+# Ver USAGE_GUIDE.md para detalles completos
+```
+
+📖 **[Ver Guía de Uso Completa →](USAGE_GUIDE.md)**
 
 ## 🎯 ¿Qué son Agent Skills?
 
-Los Agent Skills son recursos modulares basados en el sistema de archivos que proporcionan a Claude expertise específico de dominio: workflows, contexto y mejores prácticas que transforman agentes de propósito general en especialistas.
+Los **Agent Skills** son recursos modulares basados en el sistema de archivos que proporcionan a agentes de IA (GitHub Copilot, Claude, etc.) expertise específico de dominio: workflows, contexto y mejores prácticas que transforman agentes de propósito general en especialistas.
 
-**Compatibles con**: React, TypeScript, Angular, Python, Java, Kotlin | **Integración**: GitHub Copilot
+**Agent Skills es un estándar abierto** ([agentskills.io](https://agentskills.io/)) soportado nativamente por:
+- ✅ GitHub Copilot en VS Code
+- ✅ GitHub Copilot CLI
+- ✅ GitHub Copilot coding agent
+- ✅ Claude API, Claude Code, Claude.ai
+
+**Tech stacks soportados**: React, TypeScript, Angular, Python (FastAPI), Java (Spring Boot), Kotlin
 
 ## 📋 Skills Disponibles
 
@@ -104,6 +123,21 @@ Comunicación interna, externa y crisis.
 - Executive communications
 
 ## 🚀 Cómo Usar
+
+### En GitHub Copilot (VS Code)
+
+```bash
+# 1. Copia skills a tu proyecto (se comparten con el equipo)
+mkdir -p .github/skills
+cp -r skills/code-analysis .github/skills/
+cp -r skills/testing .github/skills/
+
+# 2. Habilita en VS Code: Settings → chat.useAgentSkills → ✅
+
+# 3. Usa Copilot Chat normalmente - los skills se activan automáticamente
+```
+
+📖 **[Ver Guía Completa de GitHub Copilot →](USAGE_GUIDE.md#-uso-con-github-copilot-vs-code---recomendado)**
 
 ### En Claude API
 
