@@ -142,61 +142,51 @@ def test_create_user(database_session, sample_user):
 
 ## Testing by Framework
 
-### Python (pytest)
+### React + TypeScript (Jest + React Testing Library)
 
-```python
-import pytest
-from unittest.mock import Mock, patch
-from myapp import UserService, EmailService
+- **Component Testing**: Renderizado, interacciones, estados
+- **Hook Testing**: Custom hooks con renderHook
+- **Event Testing**: Clicks, inputs, formularios
+- **Async Testing**: waitFor, findBy queries
+- **Mock Testing**: jest.fn(), jest.mock()
 
-class TestUserService:
-    """Test suite for UserService."""
-    
-    @pytest.fixture
-    def email_service(self):
-        """Mock email service."""
-        return Mock(spec=EmailService)
-    
-    @pytest.fixture
-    def user_service(self, email_service):
-        """Create UserService with mocked dependencies."""
-        return UserService(email_service=email_service)
-    
-    def test_create_user_success(self, user_service, email_service):
-        """Test successful user creation."""
-        user_data = {
-            'email': 'new@example.com',
-            'name': 'New User'
-        }
-        
-        user = user_service.create_user(user_data)
-        
-        assert user.email == 'new@example.com'
-        assert user.name == 'New User'
-        email_service.send_welcome.assert_called_once_with(user)
-    
-    def test_create_user_duplicate_email(self, user_service):
-        """Test creating user with duplicate email raises error."""
-        user_data = {'email': 'existing@example.com', 'name': 'User'}
-        
-        with pytest.raises(DuplicateEmailError):
-            user_service.create_user(user_data)
-    
-    @pytest.mark.parametrize('invalid_email', [
-        'not-an-email',
-        '@example.com',
-        'test@',
-        '',
-    ])
-    def test_create_user_invalid_email(self, user_service, invalid_email):
-        """Test creating user with invalid email raises error."""
-        user_data = {'email': invalid_email, 'name': 'User'}
-        
-        with pytest.raises(InvalidEmailError):
-            user_service.create_user(user_data)
-```
+### Angular (Jasmine/Karma)
 
-### JavaScript (Jest)
+- **Component Testing**: TestBed, fixtures, change detection
+- **Service Testing**: HttpClientTestingModule, mock HttpClient
+- **Dependency Injection**: TestBed.inject()
+- **Async Testing**: fakeAsync, tick, flush
+- **Integration Testing**: RouterTestingModule, componentes integrados
+
+### Python (pytest + FastAPI)
+
+- **Unit Testing**: pytest fixtures, parametrize
+- **API Testing**: TestClient, async testing
+- **Mock Testing**: unittest.mock, pytest-mock
+- **Database Testing**: fixtures con rollback
+- **Integration Testing**: test containers, real databases
+
+### Java + Spring Boot (JUnit 5 + Mockito)
+
+- **Unit Testing**: @ExtendWith, @Mock, @InjectMocks
+- **Service Testing**: Mockito mocks, verify, when
+- **Integration Testing**: @SpringBootTest, @AutoConfigureTestDatabase
+- **REST API Testing**: MockMvc, TestRestTemplate
+- **Transaction Testing**: @Transactional en tests
+
+### Kotlin (JUnit 5 + MockK + Coroutines)
+
+- **Coroutine Testing**: runTest, runBlocking
+- **Mock Testing**: mockk, coEvery, coVerify
+- **Flow Testing**: turbine, toList()
+- **Suspend Function Testing**: TestCoroutineDispatcher
+- **Integration Testing**: Spring Boot con coroutines
+
+**Nota**: Para ejemplos completos específicos de tu stack tecnológico (React, Angular, Python, Java, Kotlin), consulta [EXAMPLES_STACK.md](EXAMPLES_STACK.md).
+
+### Ejemplos Genéricos (Legacy)
+
+#### Python (pytest)
 
 ```javascript
 import { UserService } from './user-service';

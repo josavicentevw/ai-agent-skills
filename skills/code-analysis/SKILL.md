@@ -57,33 +57,56 @@ Calculate and interpret:
 
 ### 4. Language-Specific Analysis
 
+#### React + TypeScript
+- Component patterns (functional vs class)
+- Hooks usage and custom hooks
+- Props validation and typing
+- State management patterns
+- Performance optimization (memo, useMemo, useCallback)
+- Key prop usage in lists
+- Event handling best practices
+- Accessibility (a11y) compliance
+
+#### Angular + TypeScript
+- Component lifecycle hooks
+- RxJS observable patterns
+- Dependency injection
+- Change detection strategies
+- Template syntax and bindings
+- Service architecture
+- Module organization
+- TypeScript strict mode compliance
+
 #### Python
 - PEP 8 compliance
-- Type hints usage
-- Exception handling patterns
-- List comprehension opportunities
-- Generator vs list usage
-
-#### JavaScript/TypeScript
-- ESLint rule violations
+- Type hints usage (Python 3.8+)
 - Async/await patterns
-- Promise handling
-- Module structure
-- Type safety (TypeScript)
+- Exception handling patterns
+- List/dict comprehensions
+- Generator vs list usage
+- FastAPI/Django best practices
+- Pydantic model validation
 
-#### Java
+#### Java + Spring Boot
 - SOLID principles adherence
 - Design pattern opportunities
-- Exception handling
-- Memory management patterns
-- Concurrency issues
+- Spring annotations usage
+- JPA/Hibernate patterns
+- Exception handling (@ControllerAdvice)
+- Bean validation
+- Lombok usage
+- Transaction management
+- REST API design
 
-#### Go
-- Idiomatic Go patterns
-- Error handling
-- Goroutine usage
-- Interface design
-- Package structure
+#### Kotlin
+- Idiomatic Kotlin patterns
+- Coroutines and Flow
+- Null safety
+- Data classes and sealed classes
+- Extension functions
+- Scope functions (let, run, with, apply, also)
+- Companion objects
+- Destructuring declarations
 
 ## Workflows
 
@@ -241,3 +264,5 @@ Use this skill when:
 ## Examples
 
 See [EXAMPLES.md](EXAMPLES.md) for detailed analysis examples across different languages and scenarios.
+
+See [EXAMPLES_STACK.md](EXAMPLES_STACK.md) for comprehensive examples with React, TypeScript, Angular, Python, Java, and Kotlin.

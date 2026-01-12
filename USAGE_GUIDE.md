@@ -8,6 +8,7 @@ Esta guía te ayudará a comenzar a usar los Agent Skills en diferentes platafor
 - [Uso en Claude API](#uso-en-claude-api)
 - [Uso en Claude Code](#uso-en-claude-code)
 - [Uso en Claude.ai](#uso-en-claudeai)
+- [Uso con GitHub Copilot](#uso-con-github-copilot)
 - [Ejemplos de Uso](#ejemplos-de-uso)
 
 ## 🚀 Inicio Rápido
@@ -155,6 +156,279 @@ Claude: [Activará el skill code-analysis automáticamente]
 - Los skills son **por usuario** (no compartidos con el equipo)
 - Acceso a red puede estar limitado según configuración
 - No hay gestión centralizada por administradores
+
+## 🤖 Uso con GitHub Copilot
+
+Los Agent Skills también pueden complementar tu flujo de trabajo con GitHub Copilot. Aunque Copilot y Claude son herramientas diferentes, puedes integrar conceptualmente los skills en tu proceso de desarrollo diario.
+
+### Enfoque Híbrido: Copilot + Agent Skills
+
+#### 1. **Copilot para Autocompletado Rápido**
+
+Usa GitHub Copilot para:
+- Autocompletado de código línea por línea
+- Generación rápida de funciones pequeñas
+- Snippets y boilerplate code
+- Refactorizaciones simples
+
+```typescript
+// Copilot te ayuda con autocompletado inline
+function calculateDiscount(price: number, customer: Customer) {
+  // Escribe el comentario y Copilot sugiere la implementación
+  // Calculate discount based on customer tier
+  
+}
+```
+
+#### 2. **Claude + Skills para Análisis Profundo**
+
+Usa Claude con Agent Skills para:
+- **Análisis completo de arquitectura**
+- **Revisión exhaustiva de código**
+- **Generación de tests comprehensivos**
+- **Documentación detallada**
+- **Refactorings complejos**
+
+```bash
+# Ejemplo: Exporta tu código para análisis con Claude
+git diff > changes.patch
+
+# Luego pega en Claude con prompt:
+# "Usando el skill code-analysis, revisa estos cambios y dame feedback detallado"
+```
+
+### Flujo de Trabajo Recomendado
+
+#### Desarrollo Diario con Copilot
+
+1. **Escribe código con Copilot activo**
+   ```typescript
+   // Copilot te asiste con sugerencias inline
+   export class UserService {
+     constructor(private repo: UserRepository) {}
+     
+     async createUser(data: CreateUserDTO) {
+       // Copilot sugiere validaciones y lógica
+     }
+   }
+   ```
+
+2. **Usa Copilot Chat para preguntas rápidas**
+   - "How do I handle errors in async functions?"
+   - "Generate a unit test for this function"
+   - "Explain this regex pattern"
+
+3. **Commit frecuentemente**
+   ```bash
+   git add .
+   git commit -m "feat: add user service"
+   ```
+
+#### Revisión Profunda con Claude Skills
+
+4. **Análisis de Código Periódico**
+   
+   Una vez por día/semana, usa Claude con el skill `code-analysis`:
+   
+   ```
+   Prompt: "Revisa los archivos en src/services/ y dame:
+   1. Problemas de arquitectura
+   2. Violaciones de SOLID
+   3. Code smells
+   4. Sugerencias de mejora"
+   ```
+
+5. **Generación de Tests Completos**
+   
+   Usa el skill `testing` para cobertura comprehensiva:
+   
+   ```
+   Prompt: "Genera tests completos para UserService incluyendo:
+   - Unit tests con mocks
+   - Integration tests
+   - Edge cases
+   - Error handling"
+   ```
+
+6. **Documentación de Features**
+   
+   Al finalizar una feature, usa el skill `documentation`:
+   
+   ```
+   Prompt: "Documenta el módulo de autenticación:
+   - README técnico
+   - API documentation
+   - Architecture decision records
+   - Deployment guide"
+   ```
+
+### Integración en CI/CD
+
+#### Pre-commit Hook con Claude
+
+Crea un script que valide código antes de commit:
+
+```bash
+#!/bin/bash
+# .git/hooks/pre-commit
+
+# Obtener archivos modificados
+FILES=$(git diff --cached --name-only --diff-filter=ACM | grep -E '\.(ts|js|py|java|kt)$')
+
+if [ -z "$FILES" ]; then
+  exit 0
+fi
+
+# Crear un archivo temporal con los cambios
+git diff --cached > /tmp/changes.patch
+
+# Opcional: Llamar a Claude API con skill code-analysis
+# (requiere configuración de API key)
+echo "💡 Considera revisar estos cambios con Claude skill 'code-analysis'"
+echo "Archivos modificados:"
+echo "$FILES"
+
+exit 0
+```
+
+#### GitHub Actions con Claude
+
+```yaml
+# .github/workflows/code-review.yml
+name: AI Code Review
+
+on:
+  pull_request:
+    types: [opened, synchronize]
+
+jobs:
+  review:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      
+      - name: Get changed files
+        id: files
+        run: |
+          git diff origin/main...HEAD > changes.patch
+      
+      - name: AI Review Comment
+        uses: actions/github-script@v6
+        with:
+          script: |
+            github.rest.issues.createComment({
+              issue_number: context.issue.number,
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              body: '🤖 **Tip**: Review this PR with Claude using the `code-analysis` skill for deeper insights!'
+            })
+```
+
+### Comandos Útiles del Ecosistema
+
+#### VS Code con Copilot
+
+```
+# Comandos en Command Palette (Cmd+Shift+P / Ctrl+Shift+P)
+> GitHub Copilot: Explain This
+> GitHub Copilot: Generate Tests
+> GitHub Copilot: Fix This
+```
+
+#### Claude Desktop con Skills
+
+Si usas Claude Desktop App:
+
+1. **Arrastra carpetas de código** directamente a la ventana
+2. **Menciona el skill explícitamente**:
+   ```
+   "Usando @code-analysis, revisa este proyecto"
+   ```
+3. **Exporta resultados** como Markdown para documentación
+
+### Best Practices: Copilot + Claude
+
+| Herramienta | Cuándo Usar | Ejemplo |
+|-------------|-------------|---------|
+| **GitHub Copilot** | Escritura activa de código, autocompletado, refactors simples | Escribir funciones, generar tests básicos, explicar líneas |
+| **Claude + Skills** | Análisis arquitectónico, revisiones profundas, documentación compleja | Code reviews, análisis de patterns, diseño de arquitectura |
+
+#### ✅ DO: Usar Copilot
+
+- Autocompletar implementaciones obvias
+- Generar boilerplate (modelos, DTOs, interfaces)
+- Escribir tests unitarios simples
+- Explicar fragmentos de código puntuales
+- Sugerencias inline mientras escribes
+
+#### ✅ DO: Usar Claude + Skills
+
+- Revisar PRs complejos o grandes refactors
+- Analizar arquitectura de múltiples archivos
+- Generar suites de tests completas (unit + integration)
+- Escribir documentación técnica extensa
+- Diseñar nuevos features o sistemas
+- Identificar code smells y anti-patterns
+
+### Extensiones Recomendadas
+
+Para maximizar tu productividad:
+
+**VS Code Extensions:**
+- `GitHub.copilot` - Copilot oficial
+- `GitHub.copilot-chat` - Chat con Copilot
+- `GitHub.copilot-labs` - Features experimentales
+- `Anthropic.claude-dev` - (Si disponible) Integración Claude
+
+**Claude Desktop:**
+- Instala skills localmente en `~/.claude/skills/`
+- Usa proyectos de Claude para mantener contexto entre sesiones
+
+### Ejemplo Real: Feature Completa
+
+```
+📝 FASE 1: Diseño (Claude + architecture skill)
+→ "Diseña la arquitectura para un sistema de notificaciones real-time"
+→ Obtienes: diagrama, tech stack, patterns
+
+💻 FASE 2: Implementación (GitHub Copilot)
+→ Escribes código con autocompletado de Copilot
+→ Generas tests básicos con Copilot
+
+🔍 FASE 3: Revisión (Claude + code-analysis skill)
+→ "Revisa el código de src/notifications/"
+→ Obtienes: feedback detallado, mejoras
+
+🧪 FASE 4: Testing (Claude + testing skill)
+→ "Genera tests completos para NotificationService"
+→ Obtienes: unit, integration, edge cases
+
+📚 FASE 5: Documentación (Claude + documentation skill)
+→ "Documenta el módulo de notificaciones"
+→ Obtienes: README, API docs, ADRs
+```
+
+### Troubleshooting: Copilot + Claude
+
+**Problema:** Copilot sugiere código que Claude critica
+
+**Solución:**
+1. Usa Copilot para velocidad inicial
+2. Revisa con Claude antes de hacer PR
+3. Ajusta sugerencias de Copilot basándote en feedback de Claude
+
+**Problema:** Claude da feedback muy detallado, Copilot es muy rápido
+
+**Solución:**
+- **Desarrollo iterativo:** Copilot para prototipar
+- **Revisión periódica:** Claude para validar calidad
+- **Balance:** 80% Copilot (coding) + 20% Claude (review)
+
+### Recursos
+
+- **GitHub Copilot Docs:** https://docs.github.com/copilot
+- **Claude Skills Docs:** https://platform.claude.com/docs/en/agents-and-tools/agent-skills
+- **VS Code Copilot:** https://marketplace.visualstudio.com/items?itemName=GitHub.copilot
 
 ## 📚 Ejemplos de Uso
 

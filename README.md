@@ -3,7 +3,7 @@
 Una colección de Agent Skills profesionales siguiendo las mejores prácticas de Anthropic para extender las capacidades de Claude con expertise especializado.
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
-[![Skills](https://img.shields.io/badge/Skills-5-blue.svg)]()
+[![Skills](https://img.shields.io/badge/Skills-10-blue.svg)]()
 [![Documentation](https://img.shields.io/badge/Docs-Completo-green.svg)]()
 
 ## 🚀 Quick Start
@@ -24,42 +24,84 @@ cp -r skills/code-analysis ~/.claude/skills/
 
 Los Agent Skills son recursos modulares basados en el sistema de archivos que proporcionan a Claude expertise específico de dominio: workflows, contexto y mejores prácticas que transforman agentes de propósito general en especialistas.
 
+**Compatibles con**: React, TypeScript, Angular, Python, Java, Kotlin | **Integración**: GitHub Copilot
+
 ## 📋 Skills Disponibles
 
-### 1. **Code Analysis** (`code-analysis`)
+### 🔧 Technical Skills
+
+#### 1. **Code Analysis** (`code-analysis`)
 Analiza y revisa código con mejores prácticas de ingeniería de software.
-- Análisis de calidad de código
-- Detección de code smells
-- Recomendaciones de mejora
-- Métricas de complejidad
+- Análisis de calidad de código para React, Angular, Python, Java, Kotlin
+- Detección de code smells específicos de tu stack
+- Recomendaciones de mejora con ejemplos concretos
+- Métricas de complejidad y mantenibilidad
 
-### 2. **Documentation** (`documentation`)
+#### 2. **Documentation** (`documentation`)
 Genera y mantiene documentación técnica profesional.
-- API documentation
-- README files
-- Arquitectura de sistemas
-- Guías de usuario
+- API documentation (REST, GraphQL, gRPC)
+- README files y guías de contribución
+- Arquitectura de sistemas (diagramas, ADRs)
+- Guías de usuario y onboarding
 
-### 3. **Testing** (`testing`)
+#### 3. **Testing** (`testing`)
 Crea y ejecuta estrategias completas de testing.
-- Unit tests
-- Integration tests
-- Test-driven development
-- Coverage analysis
+- Unit tests (Jest, pytest, JUnit, Kotlin Test)
+- Integration tests y E2E
+- React Testing Library para componentes
+- Test-driven development (TDD)
+- Coverage analysis y mejora
 
-### 4. **Architecture** (`architecture`)
+#### 4. **Architecture** (`architecture`)
 Diseña y evalúa arquitecturas de software.
-- Patrones de diseño
-- Arquitecturas de sistemas
-- Diagramas técnicos
-- Trade-off analysis
+- Patrones de diseño (SOLID, DDD, Clean Architecture)
+- Arquitecturas de sistemas (microservicios, event-driven)
+- Diagramas técnicos (C4 model, UML)
+- Trade-off analysis y decisiones arquitectónicas
 
-### 5. **Refactoring** (`refactoring`)
+#### 5. **Refactoring** (`refactoring`)
 Mejora código existente manteniendo su funcionalidad.
-- Code modernization
-- Pattern implementation
+- Code modernization para React hooks, Kotlin coroutines
+- Pattern implementation (Repository, Factory, Strategy)
 - Performance optimization
-- Deuda técnica
+- Reducción de deuda técnica
+
+### 💼 Non-Technical Skills
+
+#### 6. **Product Owner** (`product-owner`)
+Gestión de producto, backlog y stakeholders.
+- User stories y acceptance criteria
+- Backlog prioritization (MoSCoW, RICE)
+- Sprint planning y roadmaps
+- Stakeholder communication
+
+#### 7. **Engineering Manager** (`engineering-manager`)
+Liderazgo técnico y gestión de equipos.
+- 1-on-1s y career development
+- Performance reviews
+- Hiring y onboarding
+- Team culture building
+
+#### 8. **Human Resources** (`human-resources`)
+Gestión de talento y operaciones de HR.
+- Recruiting y candidate evaluation
+- Employee engagement programs
+- HR policies y compliance
+- Onboarding (30-60-90 day plans)
+
+#### 9. **Marketing** (`marketing`)
+Campañas, contenido y estrategia de marketing.
+- Content marketing (blog posts, case studies)
+- SEO strategy y keyword research
+- Social media campaigns
+- Analytics y performance tracking
+
+#### 10. **Communications** (`communications`)
+Comunicación interna, externa y crisis.
+- Internal comms (all-hands, newsletters)
+- Press releases y media relations
+- Crisis communication plans
+- Executive communications
 
 ## 🚀 Cómo Usar
 
