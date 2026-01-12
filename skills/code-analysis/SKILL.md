@@ -1,0 +1,243 @@
+---
+name: code-analysis
+description: Analyze code quality, detect code smells, identify bugs, and provide improvement recommendations. Use when reviewing code, checking quality, analyzing complexity, or when user mentions code review, refactoring suggestions, or quality assessment.
+---
+
+# Code Analysis
+
+A comprehensive code analysis skill that helps evaluate code quality, identify potential issues, and provide actionable recommendations for improvement.
+
+## Quick Start
+
+Basic code analysis workflow:
+
+```python
+# Read the code file
+with open("target_file.py", "r") as f:
+    code = f.read()
+
+# Analyze structure and complexity
+# Check for common issues
+# Generate recommendations
+```
+
+## Core Capabilities
+
+### 1. Code Quality Assessment
+
+Evaluate overall code quality across multiple dimensions:
+
+- **Readability**: Variable naming, function clarity, code organization
+- **Maintainability**: Code complexity, coupling, cohesion
+- **Performance**: Potential bottlenecks, inefficient patterns
+- **Security**: Common vulnerabilities, input validation
+- **Best Practices**: Language-specific conventions and idioms
+
+### 2. Code Smell Detection
+
+Identify common code smells:
+
+- **Long Method**: Functions exceeding reasonable length
+- **Large Class**: Classes with too many responsibilities
+- **Duplicate Code**: Similar code patterns across files
+- **Dead Code**: Unused variables, functions, imports
+- **Magic Numbers**: Hardcoded values without explanation
+- **Deep Nesting**: Excessive indentation levels
+- **God Object**: Classes doing too much
+
+### 3. Complexity Metrics
+
+Calculate and interpret:
+
+- **Cyclomatic Complexity**: Number of independent paths
+- **Cognitive Complexity**: How difficult code is to understand
+- **Lines of Code**: Total, comment, and blank lines
+- **Function/Method Count**: Per class or module
+- **Dependency Analysis**: Import structure and coupling
+
+### 4. Language-Specific Analysis
+
+#### Python
+- PEP 8 compliance
+- Type hints usage
+- Exception handling patterns
+- List comprehension opportunities
+- Generator vs list usage
+
+#### JavaScript/TypeScript
+- ESLint rule violations
+- Async/await patterns
+- Promise handling
+- Module structure
+- Type safety (TypeScript)
+
+#### Java
+- SOLID principles adherence
+- Design pattern opportunities
+- Exception handling
+- Memory management patterns
+- Concurrency issues
+
+#### Go
+- Idiomatic Go patterns
+- Error handling
+- Goroutine usage
+- Interface design
+- Package structure
+
+## Workflows
+
+### Workflow 1: Comprehensive File Analysis
+
+1. **Read the target file**
+2. **Parse code structure**: Functions, classes, imports
+3. **Calculate metrics**: Complexity, LOC, depth
+4. **Detect issues**: Code smells, anti-patterns
+5. **Generate report**: Structured findings with priorities
+6. **Provide recommendations**: Specific, actionable improvements
+
+### Workflow 2: Multi-File Project Analysis
+
+1. **Scan project structure**
+2. **Identify dependencies**
+3. **Analyze each file**: Apply single-file workflow
+4. **Cross-reference issues**: Duplicate code, circular dependencies
+5. **Aggregate findings**: Project-wide statistics
+6. **Prioritize improvements**: Impact vs effort matrix
+
+### Workflow 3: Focused Issue Investigation
+
+1. **Receive specific concern**: Performance, security, readability
+2. **Deep dive analysis**: Targeted inspection
+3. **Identify root causes**
+4. **Suggest solutions**: Multiple options with trade-offs
+5. **Provide examples**: Before/after code snippets
+
+## Analysis Output Format
+
+Structure your analysis as follows:
+
+```markdown
+## Code Analysis Report
+
+### Summary
+- File: [filename]
+- Language: [language]
+- Lines of Code: [total]
+- Overall Quality: [High/Medium/Low]
+
+### Metrics
+- Cyclomatic Complexity: [average] (functions: [list high-complexity ones])
+- Maintainability Index: [score]
+- Code Smells Detected: [count]
+
+### Critical Issues (Priority: High)
+1. [Issue description]
+   - Location: Line [X]
+   - Impact: [explanation]
+   - Recommendation: [specific fix]
+
+### Moderate Issues (Priority: Medium)
+[Similar structure]
+
+### Minor Improvements (Priority: Low)
+[Similar structure]
+
+### Positive Aspects
+- [What's done well]
+- [Good patterns observed]
+
+### Actionable Recommendations
+1. [Priority 1 action]
+2. [Priority 2 action]
+3. [Priority 3 action]
+```
+
+## Best Practices for Analysis
+
+1. **Be Specific**: Point to exact line numbers and code sections
+2. **Provide Context**: Explain why something is an issue
+3. **Offer Solutions**: Don't just identify problems, suggest fixes
+4. **Show Examples**: Include code snippets when helpful
+5. **Consider Trade-offs**: Acknowledge when recommendations have costs
+6. **Prioritize**: Not all issues are equal importance
+7. **Be Constructive**: Focus on improvement, not criticism
+
+## Common Patterns to Check
+
+### Anti-Patterns
+
+```python
+# Anti-pattern: God Object
+class UserManager:
+    def authenticate(self): pass
+    def send_email(self): pass
+    def generate_report(self): pass
+    def process_payment(self): pass
+    # Too many responsibilities!
+
+# Better: Single Responsibility
+class Authenticator:
+    def authenticate(self): pass
+
+class EmailService:
+    def send_email(self): pass
+```
+
+### Performance Issues
+
+```python
+# Inefficient: Multiple iterations
+data = [process(x) for x in items]
+filtered = [x for x in data if x > 0]
+result = [transform(x) for x in filtered]
+
+# Efficient: Single pass
+result = [transform(process(x)) for x in items if process(x) > 0]
+```
+
+### Security Concerns
+
+```python
+# Vulnerable: SQL Injection
+query = f"SELECT * FROM users WHERE id = {user_id}"
+
+# Safe: Parameterized query
+query = "SELECT * FROM users WHERE id = ?"
+cursor.execute(query, (user_id,))
+```
+
+## Integration with Other Tools
+
+This skill can reference:
+
+- **Linting tools**: pylint, eslint, golangci-lint
+- **Testing**: pytest, jest, JUnit results
+- **Coverage**: Code coverage reports
+- **Profiling**: Performance profiler output
+
+For detailed language-specific guidelines, see [LANGUAGE_GUIDES.md](LANGUAGE_GUIDES.md).
+
+For automated analysis scripts, see [scripts/analyze.py](scripts/analyze.py).
+
+## Limitations
+
+- Cannot execute code for dynamic analysis
+- Limited to static code analysis
+- May miss runtime-only issues
+- Context-dependent recommendations require human judgment
+
+## When to Use This Skill
+
+Use this skill when:
+- Reviewing pull requests
+- Auditing legacy code
+- Planning refactoring efforts
+- Conducting code quality assessments
+- Training team members on best practices
+- Investigating specific code issues
+- Preparing for production deployment
+
+## Examples
+
+See [EXAMPLES.md](EXAMPLES.md) for detailed analysis examples across different languages and scenarios.
