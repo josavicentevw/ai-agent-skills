@@ -1,244 +1,117 @@
 # 🚀 Quick Start - AI Agent Skills
 
-¡Empieza a usar los Agent Skills en 5 minutos!
+Get up and running with Agent Skills in minutes.
 
-## ⚡ Instalación Rápida
+## ⚡ Fast Install
 
-### Opción 1: Claude Code (Más Fácil)
+### Option 1: Claude Code (easiest)
 
 ```bash
-# Copiar un skill a tu directorio personal
+# Copy a skill to your local Claude skills directory
 cp -r skills/code-analysis ~/.claude/skills/
-
-# ¡Listo! Claude lo detectará automáticamente
+# Or use a stack-specific guardrail
+cp -r skills/stack-react-typescript ~/.claude/skills/
 ```
 
-**Uso:**
-```
-Tú: "Analiza el código en main.py"
-Claude: [Usa code-analysis skill automáticamente] ✨
-```
+Use Claude Code normally; it will load the skills automatically.
 
----
+### Option 2: Claude.ai (web)
 
-### Opción 2: Claude.ai (Interfaz Web)
-
-1. **Empaqueta el skill:**
+1. Package the skill you need:
    ```bash
    ./package-skills.sh code-analysis
    ```
+2. Open [Claude.ai](https://claude.ai) → Settings → Features → Upload Skill.
+3. Upload `packaged-skills/code-analysis.zip` (or any packaged skill) and start chatting.
 
-2. **Sube a Claude.ai:**
-   - Abre [Claude.ai](https://claude.ai)
-   - Ve a Settings ⚙️ > Features
-   - Click en "Upload Skill"
-   - Selecciona `packaged-skills/code-analysis.zip`
-
-3. **¡Úsalo!**
-   ```
-   "Revisa mi código y dame feedback"
-   ```
-
----
-
-### Opción 3: Claude API (Programático)
+### Option 3: Claude API (programmatic)
 
 ```python
 import anthropic
 
-client = anthropic.Anthropic(api_key="tu-api-key")
+client = anthropic.Anthropic(api_key="your-api-key")
 
-# 1. Subir skill
+# 1) Upload the skill
 with open("packaged-skills/code-analysis.zip", "rb") as f:
     skill = client.skills.create(file=f, name="code-analysis")
 
-# 2. Usar en conversación
+# 2) Use it in a conversation
 response = client.messages.create(
     model="claude-sonnet-4-20250514",
     max_tokens=4096,
-    tools=[{"type": "code_execution_2025_08_25"}],
-    container={
-        "type": "code_execution_container",
-        "skill_ids": [skill.id]
-    },
-    messages=[{
-        "role": "user",
-        "content": "Analiza este código y sugiere mejoras"
-    }],
-    betas=[
-        "code-execution-2025-08-25",
-        "skills-2025-10-02",
-        "files-api-2025-04-14"
-    ]
+    container={"type": "code_execution_container", "skill_ids": [skill.id]},
+    messages=[{"role": "user", "content": "Review this React component for performance issues"}]
 )
-
 print(response.content[0].text)
 ```
 
 ---
 
-## 🎯 Skills Disponibles
+## 🎯 Available Skills
 
-| Skill | Descripción | Úsalo Para |
-|-------|-------------|------------|
-| **code-analysis** | Análisis de calidad de código | Revisiones de código, detección de code smells |
-| **documentation** | Generación de documentación | README, API docs, guías técnicas |
-| **testing** | Creación de tests | Unit tests, integration tests, TDD |
-| **architecture** | Diseño de sistemas | System design, patrones, escalabilidad |
-| **refactoring** | Mejora de código | Modernización, deuda técnica, patterns |
+| Skill | Use it for |
+|-------|------------|
+| `code-analysis` | Code reviews, code smells, metrics |
+| `documentation` | READMEs, API docs, architecture docs |
+| `testing` | Unit/integration/E2E tests, TDD |
+| `architecture` | System design, patterns, scalability |
+| `refactoring` | Modernization, technical debt, patterns |
+| `product-owner` | User stories, backlog, prioritization |
+| `engineering-manager` | 1:1s, performance reviews, hiring |
+| `human-resources` | Recruiting, onboarding, engagement |
+| `marketing` | Campaigns, content, SEO |
+| `communications` | Internal/external comms, crisis comms |
+| **Stack: `stack-react-typescript`** | React + TS guardrails (hooks, a11y, performance) |
+| **Stack: `stack-angular`** | Angular guardrails (DI, RxJS, templates) |
+| **Stack: `stack-python`** | Typing, validation, async/ORM patterns |
+| **Stack: `stack-java`** | Optional/null safety, JPA/transactions |
+| **Stack: `stack-kotlin`** | Coroutines/Flow, null safety, sealed/data classes |
+| **Stack: `stack-go`** | Error handling, context propagation, concurrency |
+| **Stack: `stack-scala`** | Option/Either, immutability, effect safety |
 
 ---
 
-## 💡 Ejemplos Rápidos
+## 💡 Quick Examples
 
-### 📊 Analizar Código
-
-```python
-# Tu código
-def calc(a, b, c):
-    x = a + b
-    if c:
-        return x * 2
-    return x
-
-# Claude con code-analysis skill:
-# ✅ Detecta nombres poco claros
-# ✅ Sugiere type hints
-# ✅ Recomienda docstrings
-# ✅ Calcula complejidad
+### Analyze code
+```bash
+User: "Analyze main.py and list code smells"
+Claude (with code-analysis): returns findings + fixes
 ```
 
-### 📝 Generar Documentación
-
-```python
-# Tu función
-def process_payment(amount, user_id):
-    # código aquí
-    pass
-
-# Claude con documentation skill:
-# ✅ Genera docstring completo
-# ✅ Añade ejemplos de uso
-# ✅ Documenta excepciones
-# ✅ Sigue convenciones del lenguaje
+### Generate docs
+```bash
+User: "Create a README for this API with install, usage, and examples"
+Claude (with documentation): returns a structured README
 ```
 
-### 🧪 Crear Tests
-
-```python
-# Tu código
-def validate_email(email):
-    return "@" in email and "." in email
-
-# Claude con testing skill:
-# ✅ Genera tests con pytest
-# ✅ Cubre casos válidos e inválidos
-# ✅ Usa fixtures apropiadas
-# ✅ Incluye edge cases
+### Create tests
+```bash
+User: "Write unit and integration tests for UserService"
+Claude (with testing): returns pytest/JUnit/Jest examples with edge cases
 ```
 
 ---
 
-## 🔧 Comandos Útiles
+## 🔧 Handy Commands
 
 ```bash
-# Empaquetar todos los skills
+# Package all skills
 ./package-skills.sh
 
-# Empaquetar skill específico
-./package-skills.sh code-analysis
+# Package a specific skill
+./package-skills.sh stack-react-typescript
 
-# Ver estructura del proyecto
+# Inspect structure
 cat STRUCTURE.md
-
-# Leer guía de uso completa
-cat USAGE_GUIDE.md
-
-# Ver cómo contribuir
-cat CONTRIBUTING.md
 ```
 
 ---
 
-## 📚 Aprende Más
+## 📚 Learn More
 
-- **Guía Completa:** `USAGE_GUIDE.md`
-- **Estructura:** `STRUCTURE.md`
-- **Contribuir:** `CONTRIBUTING.md`
-- **Ejemplos de Código:** `examples/`
-- **Docs Oficiales:** [Anthropic Agent Skills](https://platform.claude.com/docs/en/agents-and-tools/agent-skills/overview)
-
----
-
-## 🎓 Ejemplos de Prompts Efectivos
-
-### Con code-analysis:
-- ✅ "Analiza main.py y dame un reporte detallado"
-- ✅ "Revisa este código y encuentra code smells"
-- ✅ "Calcula la complejidad ciclomática de estas funciones"
-
-### Con documentation:
-- ✅ "Genera un README completo para este proyecto"
-- ✅ "Documenta esta API REST con ejemplos"
-- ✅ "Crea docstrings para todas las funciones"
-
-### Con testing:
-- ✅ "Genera tests unitarios para UserService"
-- ✅ "Crea tests de integración para esta API"
-- ✅ "Implementa TDD para esta nueva feature"
-
-### Con architecture:
-- ✅ "Diseña la arquitectura para un sistema de chat"
-- ✅ "Evalúa estas opciones de arquitectura"
-- ✅ "Crea un ADR para esta decisión técnica"
-
-### Con refactoring:
-- ✅ "Refactoriza este código legacy"
-- ✅ "Moderniza este código a Python 3.12"
-- ✅ "Elimina esta deuda técnica paso a paso"
-
----
-
-## 🆘 Problemas Comunes
-
-### El skill no se activa
-**Solución:** Sé más explícito en tu solicitud:
-- ❌ "Mira este código"
-- ✅ "Analiza la calidad de este código"
-
-### Error al empaquetar
-**Solución:** Verifica permisos:
-```bash
-chmod +x package-skills.sh
-./package-skills.sh
-```
-
-### Skill no aparece en Claude Code
-**Solución:** Verifica la ubicación:
-```bash
-ls ~/.claude/skills/
-# o
-ls .claude/skills/
-```
-
----
-
-## 🎉 ¡Listo para Empezar!
-
-```bash
-# 1. Empaqueta el skill que necesites
-./package-skills.sh code-analysis
-
-# 2. Úsalo en tu plataforma favorita
-#    - Claude Code: cp -r skills/code-analysis ~/.claude/skills/
-#    - Claude.ai: Sube el ZIP desde Settings
-#    - Claude API: Usa el ejemplo en examples/api_example.py
-
-# 3. ¡Disfruta de Claude con superpoderes! 🚀
-```
-
----
-
-**¿Preguntas?** Lee `USAGE_GUIDE.md` o abre un issue en GitHub.
-
-**¡Feliz coding!** 👨‍💻👩‍💻
+- **Full Usage Guide:** `USAGE_GUIDE.md`
+- **Project Structure:** `STRUCTURE.md`
+- **Contributing:** `CONTRIBUTING.md`
+- **Examples:** `examples/`
+- **Official Docs:** [Anthropic Agent Skills](https://platform.claude.com/docs/en/agents-and-tools/agent-skills/overview)

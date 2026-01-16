@@ -3,7 +3,7 @@
 A collection of professional Agent Skills following Anthropic's best practices to extend Claude's capabilities with specialized expertise.
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
-[![Skills](https://img.shields.io/badge/Skills-10-blue.svg)]()
+[![Skills](https://img.shields.io/badge/Skills-17-blue.svg)]()
 [![Documentation](https://img.shields.io/badge/Docs-Complete-green.svg)]()
 
 ## 🚀 Quick Start
@@ -43,7 +43,7 @@ cp -r skills/* .github/skills/
 - ✅ GitHub Copilot coding agent
 - ✅ Claude API, Claude Code, Claude.ai
 
-**Supported tech stacks**: React, TypeScript, Angular, Python (FastAPI), Java (Spring Boot), Kotlin
+**Supported tech stacks**: React, TypeScript, Angular, Python (FastAPI), Java (Spring Boot), Kotlin, Scala, Go
 
 ## 📋 Available Skills
 
@@ -84,6 +84,15 @@ Improve existing code while maintaining its functionality.
 - Pattern implementation (Repository, Factory, Strategy)
 - Performance optimization
 - Technical debt reduction
+
+### 🧭 Stack-Specific Guardrails
+- **React + TypeScript** (`stack-react-typescript`): Component/hook hygiene, strict typing, a11y, performance.
+- **Angular** (`stack-angular`): DI, RxJS, templates, change detection, typed forms.
+- **Python** (`stack-python`): Typing, validation, async/ORM patterns, error handling.
+- **Java** (`stack-java`): Null-safety with Optional, JPA/transactions, DTO contracts.
+- **Kotlin** (`stack-kotlin`): Coroutines/Flow, null safety, sealed/data classes.
+- **Go** (`stack-go`): Error handling, context propagation, concurrency safety.
+- **Scala** (`stack-scala`): Option/Either, immutability, effect/concurrency safety.
 
 ### 💼 Non-Technical Skills
 
@@ -131,13 +140,15 @@ Internal, external, and crisis communication.
 mkdir -p .github/skills
 cp -r skills/code-analysis .github/skills/
 cp -r skills/testing .github/skills/
+# Optional: add stack guardrails (e.g., React + TS)
+cp -r skills/stack-react-typescript .github/skills/
 
 # 2. Enable in VS Code: Settings → chat.useAgentSkills → ✅
 
 # 3. Use Copilot Chat normally - skills activate automatically
 ```
 
-📖 **[See Complete GitHub Copilot Guide →](USAGE_GUIDE.md#-uso-con-github-copilot-vs-code---recomendado)**
+📖 **[See Complete GitHub Copilot Guide →](USAGE_GUIDE.md)**
 
 ### In Claude API
 
@@ -194,13 +205,10 @@ cp -r skills/code-analysis .claude/skills/
 ```
 skill-name/
 ├── SKILL.md              # Main instructions (required)
-├── EXAMPLES.md           # Usage examples
-├── REFERENCE.md          # Detailed documentation
-├── scripts/              # Auxiliary scripts
-│   ├── analyze.py
-│   └── validate.py
-└── templates/            # Templates and resources
-    └── template.json
+├── EXAMPLES.md           # Usage examples (optional)
+├── EXAMPLES_STACK.md     # Stack-specific examples (optional)
+└── scripts/              # Auxiliary scripts (optional)
+    └── analyze.py
 ```
 
 ### Loading Levels

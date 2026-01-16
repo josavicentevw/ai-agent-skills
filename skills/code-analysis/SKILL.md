@@ -21,6 +21,13 @@ with open("target_file.py", "r") as f:
 # Generate recommendations
 ```
 
+## Review Checklists and Stack Rules
+
+- **Start with general review lists**: `docs/review/code-conventions.md`, `docs/review/readability-checklist.md`, `docs/review/reliability-checklist.md`, `docs/review/security-checklist.md`, `docs/review/performance-checklist.md`, `docs/review/testing-checklist.md`.
+- **Apply stack-specific rules**: `docs/stack-rules/react-typescript-rules.md`, `docs/stack-rules/angular-rules.md`, `docs/stack-rules/python-rules.md`, `docs/stack-rules/java-rules.md`, `docs/stack-rules/java-kotlin-rules.md`, `docs/stack-rules/scala-rules.md`, `docs/stack-rules/go-rules.md`.
+- **Use dedicated stack skills**: `skills/stack-react-typescript`, `skills/stack-angular`, `skills/stack-python`, `skills/stack-java`, `skills/stack-kotlin`, `skills/stack-scala`, `skills/stack-go` for focused workflows aligned with the above rules.
+- **Report with references**: Link findings to the checklist/rule anchor that was violated for fast remediation.
+
 ## Core Capabilities
 
 ### 1. Code Quality Assessment
@@ -58,6 +65,7 @@ Calculate and interpret:
 ### 4. Language-Specific Analysis
 
 #### React + TypeScript
+- Reference: `docs/stack-rules/react-typescript-rules.md` and `skills/stack-react-typescript`
 - Component patterns (functional vs class)
 - Hooks usage and custom hooks
 - Props validation and typing
@@ -68,6 +76,7 @@ Calculate and interpret:
 - Accessibility (a11y) compliance
 
 #### Angular + TypeScript
+- Reference: `docs/stack-rules/angular-rules.md` and `skills/stack-angular`
 - Component lifecycle hooks
 - RxJS observable patterns
 - Dependency injection
@@ -78,6 +87,7 @@ Calculate and interpret:
 - TypeScript strict mode compliance
 
 #### Python
+- Reference: `docs/stack-rules/python-rules.md` and `skills/stack-python`
 - PEP 8 compliance
 - Type hints usage (Python 3.8+)
 - Async/await patterns
@@ -88,6 +98,7 @@ Calculate and interpret:
 - Pydantic model validation
 
 #### Java + Spring Boot
+- Reference: `docs/stack-rules/java-rules.md` and `skills/stack-java`
 - SOLID principles adherence
 - Design pattern opportunities
 - Spring annotations usage
@@ -99,6 +110,7 @@ Calculate and interpret:
 - REST API design
 
 #### Kotlin
+- Reference: `docs/stack-rules/java-kotlin-rules.md` and `skills/stack-kotlin`
 - Idiomatic Kotlin patterns
 - Coroutines and Flow
 - Null safety
@@ -107,6 +119,22 @@ Calculate and interpret:
 - Scope functions (let, run, with, apply, also)
 - Companion objects
 - Destructuring declarations
+
+#### Scala
+- Reference: `docs/stack-rules/scala-rules.md` and `skills/stack-scala`
+- Option/Either/Try usage instead of null
+- Immutability and collection best practices
+- Pattern matching exhaustiveness and for-comprehensions
+- Concurrency with Future/IO and resource safety
+- Controlled use of implicits/givens and type classes
+
+#### Go
+- Reference: `docs/stack-rules/go-rules.md` and `skills/stack-go`
+- Explicit error handling and wrapping with context
+- Context propagation and cancellation
+- Concurrency correctness with goroutines/channels
+- Interface-oriented design and zero-value-safe structs
+- Database/HTTP patterns with proper resource management
 
 ## Workflows
 
