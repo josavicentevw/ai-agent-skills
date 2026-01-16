@@ -1,159 +1,159 @@
 # AI Agent Skills Collection
 
-Una colección de Agent Skills profesionales siguiendo las mejores prácticas de Anthropic para extender las capacidades de Claude con expertise especializado.
+A collection of professional Agent Skills following Anthropic's best practices to extend Claude's capabilities with specialized expertise.
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![Skills](https://img.shields.io/badge/Skills-10-blue.svg)]()
-[![Documentation](https://img.shields.io/badge/Docs-Completo-green.svg)]()
+[![Documentation](https://img.shields.io/badge/Docs-Complete-green.svg)]()
 
-## 🚀 Inicio Rápido
+## 🚀 Quick Start
 
-### GitHub Copilot en VS Code (Recomendado)
+### GitHub Copilot in VS Code (Recommended)
 
 ```bash
-# 1. Copia los skills a tu proyecto
+# 1. Copy skills to your project
 mkdir -p .github/skills
 cp -r skills/* .github/skills/
 
-# 2. Habilita Agent Skills en VS Code
+# 2. Enable Agent Skills in VS Code
 # Settings → chat.useAgentSkills → ✅
 
-# 3. ¡Listo! Copilot los usará automáticamente
+# 3. Done! Copilot will use them automatically
 ```
 
 ### Claude API/Code
 
 ```bash
-# 1. Empaqueta los skills que necesites
+# 1. Package the skills you need
 ./package-skills.sh code-analysis
 
-# 2. Importa en Claude según tu plataforma
-# Ver USAGE_GUIDE.md para detalles completos
+# 2. Import into Claude according to your platform
+# See USAGE_GUIDE.md for complete details
 ```
 
-📖 **[Ver Guía de Uso Completa →](USAGE_GUIDE.md)**
+📖 **[See Complete Usage Guide →](USAGE_GUIDE.md)**
 
-## 🎯 ¿Qué son Agent Skills?
+## 🎯 What are Agent Skills?
 
-Los **Agent Skills** son recursos modulares basados en el sistema de archivos que proporcionan a agentes de IA (GitHub Copilot, Claude, etc.) expertise específico de dominio: workflows, contexto y mejores prácticas que transforman agentes de propósito general en especialistas.
+**Agent Skills** are modular file system-based resources that provide AI agents (GitHub Copilot, Claude, etc.) with domain-specific expertise: workflows, context, and best practices that transform general-purpose agents into specialists.
 
-**Agent Skills es un estándar abierto** ([agentskills.io](https://agentskills.io/)) soportado nativamente por:
-- ✅ GitHub Copilot en VS Code
+**Agent Skills is an open standard** ([agentskills.io](https://agentskills.io/)) natively supported by:
+- ✅ GitHub Copilot in VS Code
 - ✅ GitHub Copilot CLI
 - ✅ GitHub Copilot coding agent
 - ✅ Claude API, Claude Code, Claude.ai
 
-**Tech stacks soportados**: React, TypeScript, Angular, Python (FastAPI), Java (Spring Boot), Kotlin
+**Supported tech stacks**: React, TypeScript, Angular, Python (FastAPI), Java (Spring Boot), Kotlin
 
-## 📋 Skills Disponibles
+## 📋 Available Skills
 
 ### 🔧 Technical Skills
 
 #### 1. **Code Analysis** (`code-analysis`)
-Analiza y revisa código con mejores prácticas de ingeniería de software.
-- Análisis de calidad de código para React, Angular, Python, Java, Kotlin
-- Detección de code smells específicos de tu stack
-- Recomendaciones de mejora con ejemplos concretos
-- Métricas de complejidad y mantenibilidad
+Analyze and review code with software engineering best practices.
+- Code quality analysis for React, Angular, Python, Java, Kotlin
+- Stack-specific code smell detection
+- Improvement recommendations with concrete examples
+- Complexity and maintainability metrics
 
 #### 2. **Documentation** (`documentation`)
-Genera y mantiene documentación técnica profesional.
+Generate and maintain professional technical documentation.
 - API documentation (REST, GraphQL, gRPC)
-- README files y guías de contribución
-- Arquitectura de sistemas (diagramas, ADRs)
-- Guías de usuario y onboarding
+- README files and contribution guides
+- System architecture (diagrams, ADRs)
+- User guides and onboarding
 
 #### 3. **Testing** (`testing`)
-Crea y ejecuta estrategias completas de testing.
+Create and execute comprehensive testing strategies.
 - Unit tests (Jest, pytest, JUnit, Kotlin Test)
-- Integration tests y E2E
-- React Testing Library para componentes
+- Integration tests and E2E
+- React Testing Library for components
 - Test-driven development (TDD)
-- Coverage analysis y mejora
+- Coverage analysis and improvement
 
 #### 4. **Architecture** (`architecture`)
-Diseña y evalúa arquitecturas de software.
-- Patrones de diseño (SOLID, DDD, Clean Architecture)
-- Arquitecturas de sistemas (microservicios, event-driven)
-- Diagramas técnicos (C4 model, UML)
-- Trade-off analysis y decisiones arquitectónicas
+Design and evaluate software architectures.
+- Design patterns (SOLID, DDD, Clean Architecture)
+- System architectures (microservices, event-driven)
+- Technical diagrams (C4 model, UML)
+- Trade-off analysis and architectural decisions
 
 #### 5. **Refactoring** (`refactoring`)
-Mejora código existente manteniendo su funcionalidad.
-- Code modernization para React hooks, Kotlin coroutines
+Improve existing code while maintaining its functionality.
+- Code modernization for React hooks, Kotlin coroutines
 - Pattern implementation (Repository, Factory, Strategy)
 - Performance optimization
-- Reducción de deuda técnica
+- Technical debt reduction
 
 ### 💼 Non-Technical Skills
 
 #### 6. **Product Owner** (`product-owner`)
-Gestión de producto, backlog y stakeholders.
-- User stories y acceptance criteria
+Product management, backlog, and stakeholders.
+- User stories and acceptance criteria
 - Backlog prioritization (MoSCoW, RICE)
-- Sprint planning y roadmaps
+- Sprint planning and roadmaps
 - Stakeholder communication
 
 #### 7. **Engineering Manager** (`engineering-manager`)
-Liderazgo técnico y gestión de equipos.
-- 1-on-1s y career development
+Technical leadership and team management.
+- 1-on-1s and career development
 - Performance reviews
-- Hiring y onboarding
+- Hiring and onboarding
 - Team culture building
 
 #### 8. **Human Resources** (`human-resources`)
-Gestión de talento y operaciones de HR.
-- Recruiting y candidate evaluation
+Talent management and HR operations.
+- Recruiting and candidate evaluation
 - Employee engagement programs
-- HR policies y compliance
+- HR policies and compliance
 - Onboarding (30-60-90 day plans)
 
 #### 9. **Marketing** (`marketing`)
-Campañas, contenido y estrategia de marketing.
+Campaigns, content, and marketing strategy.
 - Content marketing (blog posts, case studies)
-- SEO strategy y keyword research
+- SEO strategy and keyword research
 - Social media campaigns
-- Analytics y performance tracking
+- Analytics and performance tracking
 
 #### 10. **Communications** (`communications`)
-Comunicación interna, externa y crisis.
+Internal, external, and crisis communication.
 - Internal comms (all-hands, newsletters)
-- Press releases y media relations
+- Press releases and media relations
 - Crisis communication plans
 - Executive communications
 
-## 🚀 Cómo Usar
+## 🚀 How to Use
 
-### En GitHub Copilot (VS Code)
+### In GitHub Copilot (VS Code)
 
 ```bash
-# 1. Copia skills a tu proyecto (se comparten con el equipo)
+# 1. Copy skills to your project (shared with the team)
 mkdir -p .github/skills
 cp -r skills/code-analysis .github/skills/
 cp -r skills/testing .github/skills/
 
-# 2. Habilita en VS Code: Settings → chat.useAgentSkills → ✅
+# 2. Enable in VS Code: Settings → chat.useAgentSkills → ✅
 
-# 3. Usa Copilot Chat normalmente - los skills se activan automáticamente
+# 3. Use Copilot Chat normally - skills activate automatically
 ```
 
-📖 **[Ver Guía Completa de GitHub Copilot →](USAGE_GUIDE.md#-uso-con-github-copilot-vs-code---recomendado)**
+📖 **[See Complete GitHub Copilot Guide →](USAGE_GUIDE.md#-uso-con-github-copilot-vs-code---recomendado)**
 
-### En Claude API
+### In Claude API
 
 ```python
 import anthropic
 
 client = anthropic.Anthropic(api_key="your-api-key")
 
-# Subir el skill
+# Upload the skill
 with open("code-analysis.zip", "rb") as f:
     skill = client.skills.create(
         file=f,
         name="code-analysis"
     )
 
-# Usar en una conversación
+# Use in a conversation
 response = client.messages.create(
     model="claude-sonnet-4-20250514",
     max_tokens=4096,
@@ -164,7 +164,7 @@ response = client.messages.create(
     },
     messages=[{
         "role": "user",
-        "content": "Analiza el código en main.py"
+        "content": "Analyze the code in main.py"
     }],
     betas=[
         "code-execution-2025-08-25",
@@ -174,110 +174,110 @@ response = client.messages.create(
 )
 ```
 
-### En Claude Code
+### In Claude Code
 
-1. Copia el directorio del skill a tu proyecto:
+1. Copy the skill directory to your project:
 ```bash
 cp -r skills/code-analysis .claude/skills/
 ```
 
-2. Claude descubrirá y usará el skill automáticamente
+2. Claude will discover and use the skill automatically
 
-### En Claude.ai
+### In Claude.ai
 
-1. Comprime el directorio del skill en un archivo ZIP
-2. Ve a Settings > Features
-3. Sube el archivo ZIP
+1. Compress the skill directory into a ZIP file
+2. Go to Settings > Features
+3. Upload the ZIP file
 
-## 📁 Estructura de un Skill
+## 📁 Skill Structure
 
 ```
 skill-name/
-├── SKILL.md              # Instrucciones principales (requerido)
-├── EXAMPLES.md           # Ejemplos de uso
-├── REFERENCE.md          # Documentación detallada
-├── scripts/              # Scripts auxiliares
+├── SKILL.md              # Main instructions (required)
+├── EXAMPLES.md           # Usage examples
+├── REFERENCE.md          # Detailed documentation
+├── scripts/              # Auxiliary scripts
 │   ├── analyze.py
 │   └── validate.py
-└── templates/            # Plantillas y recursos
+└── templates/            # Templates and resources
     └── template.json
 ```
 
-### Niveles de Carga
+### Loading Levels
 
-1. **Metadata (siempre cargado)**: Frontmatter YAML con name y description
-2. **Instrucciones (al activarse)**: Contenido principal de SKILL.md
-3. **Recursos (bajo demanda)**: Archivos adicionales referenciados
+1. **Metadata (always loaded)**: YAML frontmatter with name and description
+2. **Instructions (when activated)**: Main content of SKILL.md
+3. **Resources (on demand)**: Additional referenced files
 
-## 🛠️ Desarrollo
+## 🛠️ Development
 
-### Crear un Nuevo Skill
+### Creating a New Skill
 
-1. Crea un directorio con el nombre del skill (lowercase, hyphens)
-2. Crea `SKILL.md` con frontmatter:
+1. Create a directory with the skill name (lowercase, hyphens)
+2. Create `SKILL.md` with frontmatter:
 ```markdown
 ---
-name: mi-skill
-description: Descripción clara de qué hace y cuándo usarlo
+name: my-skill
+description: Clear description of what it does and when to use it
 ---
 
-# Mi Skill
+# My Skill
 
 ## Quick Start
-[Instrucciones básicas]
+[Basic instructions]
 
 ## Workflows
-[Procedimientos paso a paso]
+[Step-by-step procedures]
 
 ## Examples
-[Ejemplos concretos]
+[Concrete examples]
 ```
 
-3. Añade recursos adicionales según necesidad
+3. Add additional resources as needed
 
-### Mejores Prácticas
+### Best Practices
 
-- **Descripción clara**: Incluye qué hace Y cuándo usarlo
-- **Instrucciones específicas**: Paso a paso, sin ambigüedad
-- **Ejemplos concretos**: Casos de uso reales
-- **Scripts para operaciones determinísticas**: Reduce consumo de tokens
-- **Progressive disclosure**: Solo carga lo necesario
+- **Clear description**: Include what it does AND when to use it
+- **Specific instructions**: Step-by-step, unambiguous
+- **Concrete examples**: Real use cases
+- **Scripts for deterministic operations**: Reduces token consumption
+- **Progressive disclosure**: Only load what's necessary
 
-## 📊 Beneficios
+## 📊 Benefits
 
-✅ **Especialización**: Adapta capacidades para tareas específicas
-✅ **Sin repetición**: Crea una vez, usa automáticamente
-✅ **Composición**: Combina Skills para workflows complejos
-✅ **Eficiencia de contexto**: Carga bajo demanda
-✅ **Código reutilizable**: Scripts ejecutables sin consumir tokens
+✅ **Specialization**: Adapt capabilities for specific tasks
+✅ **No repetition**: Create once, use automatically
+✅ **Composition**: Combine Skills for complex workflows
+✅ **Context efficiency**: Load on demand
+✅ **Reusable code**: Executable scripts without consuming tokens
 
-## 🔒 Seguridad
+## 🔒 Security
 
-⚠️ **Usa solo Skills de fuentes confiables**:
-- Skills propios
-- Skills oficiales de Anthropic
-- Audita completamente skills de terceros
+⚠️ **Use only Skills from trusted sources**:
+- Your own Skills
+- Official Anthropic Skills
+- Fully audit third-party skills
 
-Los Skills pueden ejecutar código y acceder a archivos. Tratalos como instalar software.
+Skills can execute code and access files. Treat them like installing software.
 
-## 📚 Documentación
+## 📚 Documentation
 
-### 📖 Guías del Proyecto
-- **[🚀 Quick Start](QUICKSTART.md)** - ¡Empieza en 5 minutos!
-- **[📘 Guía de Uso](USAGE_GUIDE.md)** - Uso detallado en cada plataforma
-- **[📋 Estructura](STRUCTURE.md)** - Organización del proyecto
-- **[🤝 Contribuir](CONTRIBUTING.md)** - Cómo contribuir nuevos skills
+### 📖 Project Guides
+- **[🚀 Quick Start](QUICKSTART.md)** - Get started in 5 minutes!
+- **[📘 Usage Guide](USAGE_GUIDE.md)** - Detailed usage for each platform
+- **[📋 Structure](STRUCTURE.md)** - Project organization
+- **[🤝 Contributing](CONTRIBUTING.md)** - How to contribute new skills
 
-### 🔗 Referencias Oficiales
-- [Documentación oficial de Agent Skills](https://platform.claude.com/docs/en/agents-and-tools/agent-skills/overview)
+### 🔗 Official References
+- [Official Agent Skills Documentation](https://platform.claude.com/docs/en/agents-and-tools/agent-skills/overview)
 - [Skills Cookbook](https://platform.claude.com/cookbook/skills-notebooks-01-skills-introduction)
 - [Best Practices](https://platform.claude.com/docs/en/agents-and-tools/agent-skills/best-practices)
 - [Agent SDK](https://platform.claude.com/docs/en/agent-sdk/overview)
 
-## 📄 Licencia
+## 📄 License
 
-MIT License - Ver archivo LICENSE para detalles
+MIT License - See LICENSE file for details
 
 ---
 
-**Nota**: Esta colección sigue las especificaciones oficiales de Anthropic para Agent Skills y es compatible con Claude API, Claude Code, y Claude.ai.
+**Note**: This collection follows Anthropic's official specifications for Agent Skills and is compatible with Claude API, Claude Code, and Claude.ai.
