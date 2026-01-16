@@ -92,25 +92,34 @@ Tip: Combine a general skill with a stack guardrail for precise reviews (e.g., `
 
 ## Examples
 
-### Code review (React + TS)
-- Prompt: “Analyze `UserCard.tsx`, flag key issues, and reference stack rules.”
-- Skills: `code-analysis`, `stack-react-typescript`
+### Code & Stack
+- **React review**: “Analyze `UserCard.tsx`, flag accessibility, performance, and typing issues using the React/TS stack rules.” → Skills: `code-analysis`, `stack-react-typescript`
+- **Angular service**: “Review `user.service.ts` for RxJS patterns, DI scope, and error handling.” → Skills: `code-analysis`, `stack-angular`
+- **Python service refactor**: “Refactor `billing.py` to lower complexity and add type hints; call out ORM pitfalls.” → Skills: `refactoring`, `stack-python`
+- **Go reliability**: “Audit `worker.go` for error handling and context propagation.” → Skills: `code-analysis`, `stack-go`
 
-### Test generation
-- Prompt: “Write unit and integration tests for `UserService`.”
-- Skills: `testing`
+### Testing & Quality
+- **API tests**: “Write unit and integration tests for `UserService` (happy paths + error cases).” → Skills: `testing`
+- **Frontend tests**: “Create RTL tests for `LoginForm` covering validation, submit flow, and loading state.” → Skills: `testing`, `stack-react-typescript`
+- **Performance sweep**: “Identify hotspots in `order-controller.ts` and propose low-risk optimizations.” → Skills: `code-analysis`, `stack-angular`
 
-### Documentation
-- Prompt: “Create a README with install, usage, and troubleshooting for this API.”
-- Skills: `documentation`
+### Documentation & Architecture
+- **README**: “Create a README with install, usage, env vars, and troubleshooting for this API.” → Skills: `documentation`
+- **ADR**: “Draft an ADR comparing SQS vs Kafka for async processing with pros/cons.” → Skills: `architecture`, `documentation`
+- **System design**: “Propose an event-driven architecture for order processing with scaling considerations.” → Skills: `architecture`
 
-### Architecture
-- Prompt: “Propose an event-driven architecture for order processing.”
-- Skills: `architecture`
+### Non-Technical (emphasis)
+- **Product Owner**: “Write user stories with acceptance criteria for a ‘Saved Carts’ feature; include edge cases and analytics events.” → Skills: `product-owner`
+- **Engineering Manager**: “Draft a 6-week plan with milestones and risks to stabilize the checkout service.” → Skills: `engineering-manager`
+- **Communications**: “Write an incident postmortem summary email for a 45-minute outage (audience: execs + engineering).” → Skills: `communications`
+- **Human Resources**: “Create a 30-60-90 onboarding plan for a senior backend engineer (Java).” → Skills: `human-resources`, `stack-java`
+- **Marketing**: “Draft a product launch brief for the new analytics dashboard with key messages and channels.” → Skills: `marketing`
 
-### Refactoring
-- Prompt: “Refactor this legacy Python module to reduce complexity and add type hints.”
-- Skills: `refactoring`, `stack-python`
+### Combined Skill Patterns
+- **Focused review**: “Use the `code-analysis` and `stack-kotlin` skills to review `InvoiceService.kt`, prioritizing null-safety and coroutine correctness.”
+- **Docs + PO**: “Summarize the v2 API changes for stakeholders and add acceptance criteria for rollout.” → Skills: `documentation`, `product-owner`
+- **Tests + Stack**: “Generate Jest + RTL tests for `CartSummary.tsx` covering discounts and edge cases; follow React/TS rules.” → Skills: `testing`, `stack-react-typescript`
+- **Architecture + Comms**: “Propose a migration plan to event-driven invoicing and draft a stakeholder update.” → Skills: `architecture`, `communications`
 
 ## Troubleshooting
 - **Skill not loading**: Confirm the skill directory/ZIP is present and frontmatter (`name`, `description`) exists in `SKILL.md`.
