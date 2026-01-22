@@ -3,7 +3,7 @@
 A collection of professional Agent Skills following Anthropic's best practices to extend Claude's capabilities with specialized expertise.
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
-[![Skills](https://img.shields.io/badge/Skills-17-blue.svg)]()
+[![Skills](https://img.shields.io/badge/Skills-13-blue.svg)]()
 [![Documentation](https://img.shields.io/badge/Docs-Complete-green.svg)]()
 
 ## 🚀 Quick Start
@@ -42,8 +42,6 @@ cp -r skills/* .github/skills/
 - ✅ GitHub Copilot CLI
 - ✅ GitHub Copilot coding agent
 - ✅ Claude API, Claude Code, Claude.ai
-
-**Supported tech stacks**: React, TypeScript, Angular, Python (FastAPI), Java (Spring Boot), Kotlin, Scala, Go
 
 ## 📋 Available Skills
 
@@ -85,46 +83,58 @@ Improve existing code while maintaining its functionality.
 - Performance optimization
 - Technical debt reduction
 
-### 🧭 Stack-Specific Guardrails
-- **React + TypeScript** (`stack-react-typescript`): Component/hook hygiene, strict typing, a11y, performance.
-- **Angular** (`stack-angular`): DI, RxJS, templates, change detection, typed forms.
-- **Python** (`stack-python`): Typing, validation, async/ORM patterns, error handling.
-- **Java** (`stack-java`): Null-safety with Optional, JPA/transactions, DTO contracts.
-- **Kotlin** (`stack-kotlin`): Coroutines/Flow, null safety, sealed/data classes.
-- **Go** (`stack-go`): Error handling, context propagation, concurrency safety.
-- **Scala** (`stack-scala`): Option/Either, immutability, effect/concurrency safety.
+#### 6. **DevSecOps** (`devsecops`)
+Security automation across code, pipelines, and infrastructure.
+- Secure CI/CD (SAST/DAST/SCA), secrets management, SBOMs
+- Container/Kubernetes hardening and runtime monitoring
+- IaC scanning and cloud posture checks
+- Compliance automation and evidence collection
+
+#### 7. **UX/UI Design** (`ux-ui-design`)
+Design user-centered, accessible experiences.
+- User research, personas, and journey maps
+- Information architecture, flows, and wireframes
+- Visual systems, prototypes, and interaction patterns
+- Accessibility and usability testing
+
+#### 8. **README Writer** (`README writer`)
+Produce high-quality README files quickly.
+- Installation, usage, and troubleshooting sections
+- Feature highlights and configuration matrices
+- Examples/snippets tailored to the project
+- Contribution, license, and support guidance
 
 ### 💼 Non-Technical Skills
 
-#### 6. **Product Owner** (`product-owner`)
+#### 9. **Product Owner** (`product-owner`)
 Product management, backlog, and stakeholders.
 - User stories and acceptance criteria
 - Backlog prioritization (MoSCoW, RICE)
 - Sprint planning and roadmaps
 - Stakeholder communication
 
-#### 7. **Engineering Manager** (`engineering-manager`)
+#### 10. **Engineering Manager** (`engineering-manager`)
 Technical leadership and team management.
 - 1-on-1s and career development
 - Performance reviews
 - Hiring and onboarding
 - Team culture building
 
-#### 8. **Human Resources** (`human-resources`)
+#### 11. **Human Resources** (`human-resources`)
 Talent management and HR operations.
 - Recruiting and candidate evaluation
 - Employee engagement programs
 - HR policies and compliance
 - Onboarding (30-60-90 day plans)
 
-#### 9. **Marketing** (`marketing`)
+#### 12. **Marketing** (`marketing`)
 Campaigns, content, and marketing strategy.
 - Content marketing (blog posts, case studies)
 - SEO strategy and keyword research
 - Social media campaigns
 - Analytics and performance tracking
 
-#### 10. **Communications** (`communications`)
+#### 13. **Communications** (`communications`)
 Internal, external, and crisis communication.
 - Internal comms (all-hands, newsletters)
 - Press releases and media relations
@@ -140,8 +150,6 @@ Internal, external, and crisis communication.
 mkdir -p .github/skills
 cp -r skills/code-analysis .github/skills/
 cp -r skills/testing .github/skills/
-# Optional: add stack guardrails (e.g., React + TS)
-cp -r skills/stack-react-typescript .github/skills/
 
 # 2. Enable in VS Code: Settings → chat.useAgentSkills → ✅
 

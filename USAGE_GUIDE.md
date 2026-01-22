@@ -19,7 +19,6 @@ This guide shows how to install, package, and use the skills across GitHub Copil
 # Copy skills locally (Copilot or Claude Code)
 mkdir -p .github/skills
 cp -r skills/code-analysis .github/skills/
-cp -r skills/stack-react-typescript .github/skills/   # stack guardrail (optional)
 
 # Package for Claude.ai / Claude API
 ./package-skills.sh code-analysis
@@ -31,34 +30,33 @@ See `QUICKSTART.md` for a 5-minute walkthrough.
 - Copy skills into `.github/skills` in your repo or workspace.
 - Enable: Settings → `chat.useAgentSkills` → ✅.
 - Copilot Chat will auto-load relevant skills based on the prompt.
-- Suggested set for engineers: `code-analysis`, `testing`, `documentation`, plus stack guardrails (e.g., `stack-react-typescript`).
+- Suggested set for engineers: `code-analysis`, `testing`, `documentation`, `devsecops`, `refactoring`.
 
 ## Claude Code
 - Copy skills into `~/.claude/skills/`:
   ```bash
   cp -r skills/code-analysis ~/.claude/skills/
-  cp -r skills/stack-python ~/.claude/skills/
   ```
 - Claude Code will discover them automatically.
 
 ## Claude API
 1) Package the skill (creates ZIPs in `packaged-skills/`):
 ```bash
-./package-skills.sh stack-react-typescript
+./package-skills.sh code-analysis
 ```
 2) Upload and use:
 ```python
 import anthropic
 
 client = anthropic.Anthropic(api_key="your-api-key")
-with open("packaged-skills/stack-react-typescript.zip", "rb") as f:
-    skill = client.skills.create(file=f, name="stack-react-typescript")
+with open("packaged-skills/code-analysis.zip", "rb") as f:
+    skill = client.skills.create(file=f, name="code-analysis")
 
 resp = client.messages.create(
     model="claude-sonnet-4-20250514",
     max_tokens=4096,
     container={"type": "code_execution_container", "skill_ids": [skill.id]},
-    messages=[{"role": "user", "content": "Review this React component for a11y and performance"}]
+    messages=[{"role": "user", "content": "Review this service for correctness, reliability, and security"}]
 )
 print(resp.content[0].text)
 ```
@@ -71,64 +69,54 @@ print(resp.content[0].text)
 ## Packaging Skills
 
 - Package all skills: `./package-skills.sh`
-- Package one: `./package-skills.sh stack-go`
+- Package one: `./package-skills.sh devsecops`
 - Output directory: `packaged-skills/`
 - ZIPs exclude `*.DS_Store`, `__pycache__`, `.git`.
 
 ## Choosing the Right Skill
 
-- **General engineering**: `code-analysis`, `testing`, `documentation`, `architecture`, `refactoring`
-- **Stack guardrails**:
-  - React + TypeScript: `stack-react-typescript`
-  - Angular: `stack-angular`
-  - Python: `stack-python`
-  - Java: `stack-java`
-  - Kotlin: `stack-kotlin`
-  - Go: `stack-go`
-  - Scala: `stack-scala`
+- **General engineering**: `code-analysis`, `testing`, `documentation`, `architecture`, `refactoring`, `devsecops`
+- **Design & UX**: `ux-ui-design`
+- **Docs-focused**: `README writer`, `documentation`
 - **Leadership/operations**: `product-owner`, `engineering-manager`, `human-resources`, `marketing`, `communications`
-
-Tip: Combine a general skill with a stack guardrail for precise reviews (e.g., `code-analysis` + `stack-go`).
 
 ## Examples
 
-### Code & Stack
-- **React review**: “Analyze `UserCard.tsx`, flag accessibility, performance, and typing issues using the React/TS stack rules.” → Skills: `code-analysis`, `stack-react-typescript`
-- **Angular service**: “Review `user.service.ts` for RxJS patterns, DI scope, and error handling.” → Skills: `code-analysis`, `stack-angular`
-- **Python service refactor**: “Refactor `billing.py` to lower complexity and add type hints; call out ORM pitfalls.” → Skills: `refactoring`, `stack-python`
-- **Go reliability**: “Audit `worker.go` for error handling and context propagation.” → Skills: `code-analysis`, `stack-go`
-
-### Testing & Quality
-- **API tests**: “Write unit and integration tests for `UserService` (happy paths + error cases).” → Skills: `testing`
-- **Frontend tests**: “Create RTL tests for `LoginForm` covering validation, submit flow, and loading state.” → Skills: `testing`, `stack-react-typescript`
-- **Performance sweep**: “Identify hotspots in `order-controller.ts` and propose low-risk optimizations.” → Skills: `code-analysis`, `stack-angular`
+### Engineering
+- **Code review**: “Analyze `UserCard.tsx`, flag accessibility, performance, and typing issues.” → Skills: `code-analysis`
+- **Service reliability**: “Audit `worker.go` for error handling, context propagation, and retry strategy.” → Skills: `code-analysis`, `devsecops`
+- **Refactor**: “Reduce complexity in `billing.py` and add guardrails for error handling.” → Skills: `refactoring`
+- **Testing**: “Write unit and integration tests for `UserService` (happy paths + error cases).” → Skills: `testing`
 
 ### Documentation & Architecture
-- **README**: “Create a README with install, usage, env vars, and troubleshooting for this API.” → Skills: `documentation`
+- **README**: “Create a README with install, usage, env vars, and troubleshooting for this API.” → Skills: `README writer`
 - **ADR**: “Draft an ADR comparing SQS vs Kafka for async processing with pros/cons.” → Skills: `architecture`, `documentation`
 - **System design**: “Propose an event-driven architecture for order processing with scaling considerations.” → Skills: `architecture`
 
-### Non-Technical (emphasis)
+### Security & Operations
+- **Pipeline security**: “Add SAST/DAST/SCA gates and secrets scanning to the CI pipeline.” → Skills: `devsecops`
+- **Container hardening**: “Review the Dockerfile and Kubernetes manifests for security issues and supply-chain risks.” → Skills: `devsecops`
+
+### Leadership & Go-To-Market
 - **Product Owner**: “Write user stories with acceptance criteria for a ‘Saved Carts’ feature; include edge cases and analytics events.” → Skills: `product-owner`
 - **Engineering Manager**: “Draft a 6-week plan with milestones and risks to stabilize the checkout service.” → Skills: `engineering-manager`
 - **Communications**: “Write an incident postmortem summary email for a 45-minute outage (audience: execs + engineering).” → Skills: `communications`
-- **Human Resources**: “Create a 30-60-90 onboarding plan for a senior backend engineer (Java).” → Skills: `human-resources`, `stack-java`
+- **Human Resources**: “Create a 30-60-90 onboarding plan for a senior backend engineer.” → Skills: `human-resources`
 - **Marketing**: “Draft a product launch brief for the new analytics dashboard with key messages and channels.” → Skills: `marketing`
 
 ### Combined Skill Patterns
-- **Focused review**: “Use the `code-analysis` and `stack-kotlin` skills to review `InvoiceService.kt`, prioritizing null-safety and coroutine correctness.”
+- **Security-focused review**: “Use `code-analysis` and `devsecops` to review `InvoiceService.kt`, prioritizing correctness, error handling, and security.” 
 - **Docs + PO**: “Summarize the v2 API changes for stakeholders and add acceptance criteria for rollout.” → Skills: `documentation`, `product-owner`
-- **Tests + Stack**: “Generate Jest + RTL tests for `CartSummary.tsx` covering discounts and edge cases; follow React/TS rules.” → Skills: `testing`, `stack-react-typescript`
 - **Architecture + Comms**: “Propose a migration plan to event-driven invoicing and draft a stakeholder update.” → Skills: `architecture`, `communications`
 
 ## Troubleshooting
 - **Skill not loading**: Confirm the skill directory/ZIP is present and frontmatter (`name`, `description`) exists in `SKILL.md`.
-- **Wrong skill chosen**: Include the skill name in the prompt (“Use the `stack-angular` skill for this review.”).
+- **Wrong skill chosen**: Include the skill name in the prompt (“Use the `devsecops` skill for the security scan.”).
 - **Packaging errors**: Ensure `package-skills.sh` is executable (`chmod +x package-skills.sh`) and run from repo root.
 - **Claude API errors**: Verify the ZIP path and that the `skill_ids` array includes the uploaded skill ID.
 
 ## References
 - `docs/review/` – General checklists (code conventions, readability, reliability, security, performance, testing)
 - `docs/stack-rules/` – Stack-specific rules, concise cheat sheets, and examples
-- `skills/` – All available skills (core, stack, and non-technical)
+- `skills/` – All available skills (core and non-technical)
 - Official Agent Skills docs: https://platform.claude.com/docs/en/agents-and-tools/agent-skills/overview

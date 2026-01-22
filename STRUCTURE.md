@@ -19,46 +19,36 @@ ai-agent-skills/
 │   └── api_example.py
 │
 └── skills/                  # All available skills
-    ├── code-analysis/       # Core code review skill (+ EXAMPLES, stack examples)
+    ├── code-analysis/       # Core code review skill (+ EXAMPLES)
     ├── documentation/
     ├── testing/
     ├── architecture/
     ├── refactoring/
+    ├── devsecops/
+    ├── ux-ui-design/
+    ├── README writer/
     ├── product-owner/
     ├── engineering-manager/
     ├── human-resources/
     ├── marketing/
-    ├── communications/
-    ├── stack-react-typescript/  # React + TS guardrails
-    ├── stack-angular/           # Angular guardrails
-    ├── stack-python/            # Python guardrails
-    ├── stack-java/              # Java (Spring) guardrails
-    ├── stack-kotlin/            # Kotlin guardrails
-    ├── stack-go/                # Go guardrails
-    └── stack-scala/             # Scala guardrails
+    └── communications/
 ```
 
 ## Key Skills (Core)
-- `code-analysis`: Code quality reviews, smells, metrics, stack references
+- `code-analysis`: Code quality reviews, smells, metrics
 - `documentation`: Technical docs (README, API docs, ADRs)
 - `testing`: Unit/integration/E2E strategies and examples
 - `architecture`: System design, patterns, scalability
 - `refactoring`: Modernization, technical debt reduction
-
-## Stack-Specific Guardrails
-- React + TypeScript (`stack-react-typescript`)
-- Angular (`stack-angular`)
-- Python (`stack-python`)
-- Java (`stack-java`)
-- Kotlin (`stack-kotlin`)
-- Go (`stack-go`)
-- Scala (`stack-scala`)
+- `devsecops`: Security automation, scanning, and pipeline hardening
+- `ux-ui-design`: Research, flows, wireframes, and accessibility
+- `README writer`: Quick, high-quality READMEs
 
 ## Non-Technical Skills
 - Product Owner, Engineering Manager, Human Resources, Marketing, Communications
 
 ## How to Package and Use
 - Package all skills: `./package-skills.sh`
-- Package one skill: `./package-skills.sh stack-react-typescript`
+- Package one skill: `./package-skills.sh devsecops`
 - Copy to Claude Code: `cp -r skills/<skill-name> ~/.claude/skills/`
 - Upload to Claude.ai: use ZIPs from `packaged-skills/`

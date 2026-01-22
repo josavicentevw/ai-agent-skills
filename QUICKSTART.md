@@ -9,8 +9,6 @@ Get up and running with Agent Skills in minutes.
 ```bash
 # Copy a skill to your local Claude skills directory
 cp -r skills/code-analysis ~/.claude/skills/
-# Or use a stack-specific guardrail
-cp -r skills/stack-react-typescript ~/.claude/skills/
 ```
 
 Use Claude Code normally; it will load the skills automatically.
@@ -56,18 +54,14 @@ print(response.content[0].text)
 | `testing` | Unit/integration/E2E tests, TDD |
 | `architecture` | System design, patterns, scalability |
 | `refactoring` | Modernization, technical debt, patterns |
+| `devsecops` | Secure pipelines, SAST/DAST/SCA, container/IaC checks |
+| `ux-ui-design` | Research, flows, wireframes, visual systems, accessibility |
+| `README writer` | Fast, high-quality README creation |
 | `product-owner` | User stories, backlog, prioritization |
 | `engineering-manager` | 1:1s, performance reviews, hiring |
 | `human-resources` | Recruiting, onboarding, engagement |
 | `marketing` | Campaigns, content, SEO |
 | `communications` | Internal/external comms, crisis comms |
-| **Stack: `stack-react-typescript`** | React + TS guardrails (hooks, a11y, performance) |
-| **Stack: `stack-angular`** | Angular guardrails (DI, RxJS, templates) |
-| **Stack: `stack-python`** | Typing, validation, async/ORM patterns |
-| **Stack: `stack-java`** | Optional/null safety, JPA/transactions |
-| **Stack: `stack-kotlin`** | Coroutines/Flow, null safety, sealed/data classes |
-| **Stack: `stack-go`** | Error handling, context propagation, concurrency |
-| **Stack: `stack-scala`** | Option/Either, immutability, effect safety |
 
 ---
 
@@ -100,7 +94,7 @@ Claude (with testing): returns pytest/JUnit/Jest examples with edge cases
 ./package-skills.sh
 
 # Package a specific skill
-./package-skills.sh stack-react-typescript
+./package-skills.sh devsecops
 
 # Inspect structure
 cat STRUCTURE.md
