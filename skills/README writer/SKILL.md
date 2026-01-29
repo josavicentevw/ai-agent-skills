@@ -8,7 +8,6 @@ Use this guide when prompting an AI to draft or refresh a README that follows th
 - **Key Responsibilities & Use Cases**: Bullet the primary jobs-to-be-done and critical paths; call out constraints or SLAs.
 - **Interfaces**: REST/gRPC topics, async queues, cron jobs. Link Swagger/OpenAPI, protobuf specs, and message contracts.
 - **Architecture**: High-level system/context view and deployment topology only (Mermaid if available); keep arrows simple and directional; avoid per-endpoint or per-notification flow diagrams.
-- **Data Model**: Main aggregates/entities, key fields, and storage tech in prose or a small table; link schemas/migrations; skip ER diagrams unless explicitly requested.
 - **Configuration & Secrets**: Required env vars, config sources, feature flags, secrets management location (no secrets inline).
 - **Local Development**: Prereqs, how to start dependencies, how to run the app, common bootstrap commands, sample data.
 - **Testing**: How to run tests (unit/integration/e2e), coverage commands, and notable fixtures or contracts.
