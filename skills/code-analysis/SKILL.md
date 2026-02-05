@@ -16,10 +16,17 @@ Basic code analysis workflow:
 with open("target_file.py", "r") as f:
     code = f.read()
 
-# Analyze structure and complexity
-# Check for common issues
-# Generate recommendations
+# Run an LLM code review following code-review-instructions/copilot-instructions.md
+# Summarize findings by severity with clear, actionable recommendations
 ```
+
+## LLM Code Review Mode (Preferred)
+
+Use the LLM (no scripts) to perform reviews guided by [`code-review-instructions/copilot-instructions.md`](code-review-instructions/copilot-instructions.md):
+- Keep the instructions open; follow the severity model (Blocking, Important, Suggestions) and priority order (Security → Reliability → Performance/Cost → Testing → Observability → Readability).
+- Make the review scope explicit (files/diff) and skip excluded assets like generated/vendor/lock files unless instructed otherwise.
+- Pull the relevant stack rules and checklists referenced in the instructions; cite them when flagging issues.
+- Report findings first with file:line, impact, and the specific fix or test to add before closing with positives.
 
 ## Review Checklists and Stack Rules
 
@@ -136,6 +143,15 @@ Calculate and interpret:
 - Database/HTTP patterns with proper resource management
 
 ## Workflows
+
+### Workflow 0: LLM Code Review (Copilot Instructions)
+
+1. **Open the instructions**: Keep [`code-review-instructions/copilot-instructions.md`](code-review-instructions/copilot-instructions.md) in view.
+2. **Identify scope**: List files/diffs included; skip excluded files noted in the instructions.
+3. **Assess critical paths first**: Security → reliability → performance/cost → tests → observability → readability/UX.
+4. **Apply stack rules**: Pull the relevant concise or full stack rule docs referenced by the instructions.
+5. **Report findings**: Start with blocking/important issues, cite file:line, describe impact, and propose the fix.
+6. **Close with next steps**: Tests to add/run and any follow-ups required to de-risk.
 
 ### Workflow 1: Comprehensive File Analysis
 
@@ -268,7 +284,7 @@ This skill can reference:
 
 For detailed language-specific guidelines, see [LANGUAGE_GUIDES.md](LANGUAGE_GUIDES.md).
 
-For automated analysis scripts, see [scripts/analyze.py](scripts/analyze.py).
+- Prefer LLM-driven review; do not call scripts like `scripts/analyze.py` unless explicitly requested.
 
 ## Limitations
 
